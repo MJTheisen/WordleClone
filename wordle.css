@@ -26,7 +26,7 @@ hr {
 #board {
     width: 350px;
     height: 420px;
-    background-color: green;
+    /* background-color: green; */
     margin : 0 auto;
     margin-top : 3px; /* push the board down by 3 pixels. */
     display : flex; /* keeps the tiled elements within the board */
