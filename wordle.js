@@ -72,8 +72,7 @@ function initialize() {
         }
         else if (e.code == "Enter") {
             update();
-            row += 1; // this will start a new row
-            col = 0; // this will start at the 0 position for the new row 
+        
         }
         if (!gameOver && row == height) { // used up all attempts. 
             gameOver = true; 
@@ -86,6 +85,23 @@ function initialize() {
 }
 
 function update() {
+    let guess = "";
+    document.getElementById("answer").innerText = "";
+
+    // string the guess word
+    for (let c = 0; c < width; c++) {
+        let currTile = document.getElementById(row.toString() + "-" + c.toString());
+        let letter = currTile.innerText;
+        guess += letter;
+    }
+    // the list is in lowercase so deal with that first
+    guess = guess.toLowerCase(); 
+    if (!guessList.includes(guess)) {
+        document.getElementById("answer").innerText = "Not in word list"
+    }
+
+
+    // begin game
     let correct = 0;
     let letterCount = {}; // BILLY -> looks like {B:1, I:1, L:2, Y:1}
     // map
@@ -147,4 +163,6 @@ function update() {
             }
         }
     }
+    row += 1; // this will start a new row
+    col = 0; // this will start at the 0 position for the new row 
 } 
