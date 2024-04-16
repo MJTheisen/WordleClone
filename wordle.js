@@ -48,7 +48,53 @@ function initialize() {
                 }
             }
         }
+        else if (e.code == "Backspace") {
+            if (0 < col && col <= width) {
+                col -=1;
+            }
+            let currTile = document.getElementById(row.toString() + "-" + col.toString());
+            currTile.innerText = "";
+        }
+        else if (e.code == "Enter") {
+            update();
+            row += 1; // this will start a new row
+            col = 0; // this will start at the 0 position for the new row 
+        }
+        if (!gameOver && row == height) { // used up all attempts. 
+            gameOver = true; 
+            document.getElementById("answer").innerText = word;
+        }
+
     })
 
 
 }
+
+function update() {
+    let correct = 0;
+    for (let c = 0; c < width; c++) {
+        let currTile = document.getElementById(row.toString() + "-" + c.toString());
+        let letter = currTile.innerText;
+
+        // Is the letter in the correct position? green = correct
+        if (word[c] == letter) {
+            currTile.classList.add("correct");
+            correct += 1;
+        }
+
+        // Is the letter in the word? yellow = present
+        else if (word.includes(letter)) {
+            currTile.classList.add("present");
+        }
+        
+        // Is the letter not even in the word? gray = absent
+        else {
+            currTile.classList.add("absent");
+        }
+
+        // 
+        if (correct == width) {
+            gameOver = true;
+        }
+    }
+} 
