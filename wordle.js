@@ -2,7 +2,7 @@
     // Michael Theisen 
     // 04/15/2024
 
- 
+  
 var height = 6; // number of guess
 var width = 5; // length of the word
 
